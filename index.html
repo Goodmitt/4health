@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4Health - Personal Training Studio</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.435.0/dist/umd/lucide.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#00A3FF',
+                            dark: '#050505',
+                            surface: '#0a0a0a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
+                        jakarta: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @layer base {
+            body {
+                background-color: #050505;
+                color: white;
+                font-family: 'Inter', sans-serif;
+                overflow-x: hidden;
+            }
+            .text-gradient {
+                background: linear-gradient(to bottom, #FFFFFF, rgba(255, 255, 255, 0.4));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .bento-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bento-card:hover {
+            transform: scale(1.02);
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 3rem;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00A3FF33;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00A3FF66;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-blue/30 selection:text-white">
+    <!-- Navigation -->
+    <nav id="nav" class="fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between px-6 md:px-12 backdrop-blur-sm border-b border-white/5 transition-colors duration-300">
+        <div class="flex items-center gap-2">
+            <img 
+                src="https://lh3.googleusercontent.com/d/1dGN5AyDWhhHis0X9oi7xiwWNvU-M5B-z" 
+                alt="4Health Logo" 
+                class="h-20 md:h-28 w-auto object-contain"
+                referrerpolicy="no-referrer"
+            />
+        </div>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest text-white/70">
+            <a href="#home" class="hover:text-brand-blue transition-colors">Início</a>
+            <a href="#services" class="hover:text-brand-blue transition-colors">Serviços</a>
+            <a href="#about" class="hover:text-brand-blue transition-colors">O Estúdio</a>
+            <a href="#testimonials" class="hover:text-brand-blue transition-colors">Testemunhos</a>
+            <a 
+                href="tel:+351911044440" 
+                class="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-brand-blue hover:text-white transition-all duration-300 transform hover:scale-105"
+            >
+                Reservar Agora
+            </a>
+        </div>
+
+        <button id="menu-toggle" class="md:hidden text-white">
+            <i data-lucide="menu" size="28"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-brand-dark flex flex-col items-center justify-center gap-8 md:hidden hidden opacity-0 translate-y-[-20px] transition-all duration-300">
+        <a href="#home" class="text-2xl font-display nav-link">Início</a>
+        <a href="#services" class="text-2xl font-display nav-link">Serviços</a>
+        <a href="#about" class="text-2xl font-display nav-link">O Estúdio</a>
+        <a href="#testimonials" class="text-2xl font-display nav-link">Testemunhos</a>
+        <a href="tel:+351911044440" class="px-8 py-4 bg-brand-blue text-black font-bold rounded-full">
+            Reservar Agora
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img 
+                src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=2070"
+                alt="Gym background" 
+                class="w-full h-full object-cover opacity-40 scale-105"
+            />
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-dark via-transparent to-brand-dark"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark to-transparent opacity-80"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div id="hero-content" class="max-w-4xl">
+                <div class="hero-line w-20 h-1 bg-brand-blue mb-8"></div>
+                <h1 class="text-6xl md:text-8xl lg:text-9xl mb-6 leading-[0.9] text-gradient font-display">
+                    A Sua Saúde,<br />A Nossa <span class="italic">Ciência.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-white/60 mb-10 max-w-2xl font-light leading-relaxed">
+                    O estúdio de Treino Personalizado mais exclusivo de Braga. 
+                    Performance, saúde e privacidade absoluta no coração da cidade.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a 
+                        href="https://wa.me/351911044440"
+                        class="px-8 py-5 bg-brand-blue text-black font-bold rounded-2xl flex items-center justify-center gap-2 group transition-all hover:scale-105"
+                    >
+                        Começar a Jornada
+                        <i data-lucide="chevron-right" class="group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a 
+                        href="#about"
+                        class="px-8 py-5 border border-white/20 rounded-2xl font-bold flex items-center justify-center hover:bg-white/10 transition-all"
+                    >
+                        Conhecer o Estúdio
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 animate-bounce">
+            <span class="text-[10px] uppercase tracking-[0.3em] font-medium">Deslizar</span>
+            <div class="w-[1px] h-12 bg-white/40"></div>
+        </div>
+    </section>
+
+    <!-- Marquee Stripe -->
+    <div class="py-12 bg-white/5 border-y border-white/5 overflow-hidden flex items-center">
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="flex items-center gap-12 text-2xl md:text-4xl font-display italic text-white/20 uppercase tracking-tighter">
+                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                </span>
+                <span class="flex items-center gap-12 text-2xl md:text-4xl font-display italic text-white/20 uppercase tracking-tighter">
+                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diferenciais Bento Grid -->
+    <section id="services" class="py-32 px-6">
+        <div class="container mx-auto">
+            <div class="reveal mb-20 text-center">
+                <h2 class="text-4xl md:text-6xl mb-6 font-display">Redefinir o <span class="text-brand-blue font-light">Treino Personalizado</span></h2>
+                <p class="text-white/40 max-w-xl mx-auto">
+                    Esqueça os ginásios convencionais. Entregamos resultados reais através de uma abordagem científica e totalmente personalizada.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[800px]">
+                <!-- Main Bento Item -->
+                <div class="reveal md:col-span-2 bento-card glass p-10 flex flex-col justify-end bg-[url('https://i.postimg.cc/8kq90xjK/642427959-18398281282199741-8164516827589187910-n.jpg')] bg-cover bg-center">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent"></div>
+                    <div class="relative z-10">
+                        <i data-lucide="users" class="w-12 h-12 text-brand-blue mb-6"></i>
+                        <h3 class="text-3xl md:text-5xl mb-4 font-display">Privacidade Absoluta</h3>
+                        <p class="text-white/70 max-w-md text-lg">
+                            Treine num ambiente exclusivo, focado 100% em si. Sem multidões, sem espera por máquinas.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Side Bento Items -->
+                <div class="grid grid-rows-2 gap-6">
+                    <div class="reveal bento-card glass p-8 group">
+                        <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:bg-brand-blue group-hover:text-black transition-colors">
+                            <i data-lucide="trending-up"></i>
+                        </div>
+                        <h3 class="text-2xl mb-2 font-display">Avaliação de Bioimpedância</h3>
+                        <p class="text-white/50 text-sm">Monitorização precisa da sua massa gorda, muscular e retenção hídrica.</p>
+                    </div>
+                    <div class="reveal bento-card glass p-8 flex flex-col justify-center bg-brand-blue/10 border-brand-blue/20">
+                        <h3 class="text-2xl mb-4 italic font-display text-brand-blue font-display">"O melhor sítio em Braga para quem procura resultados."</h3>
+                        <span class="text-sm font-bold uppercase tracking-widest">– Ricardo S.</span>
+                    </div>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="reveal bento-card glass p-8 md:flex-row flex flex-col gap-6 items-center sm:items-start">
+                    <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center shrink-0 border border-white/10">
+                        <i data-lucide="leaf" class="text-brand-blue"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl mb-2 font-display">Nutrição Integrada</h3>
+                        <p class="text-white/50 text-sm">Planos alimentares desenhados por especialistas para potenciar o seu treino personalizado.</p>
+                    </div>
+                </div>
+
+                <div class="reveal md:col-span-2 bento-card glass p-8 flex flex-col md:flex-row gap-12 overflow-hidden items-center">
+                    <div class="relative w-full md:w-1/2 aspect-video rounded-2xl overflow-hidden">
+                        <img 
+                            src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&q=80&w=2069" 
+                            class="w-full h-full object-cover"
+                            alt="Equipamento de treino"
+                        />
+                    </div>
+                    <div class="flex-1 text-left">
+                        <h3 class="text-3xl mb-4 font-display">Localização Premium</h3>
+                        <p class="text-white/50 mb-6 text-sm">No coração de Braga, nas Galerias do Bingo (Av. da Liberdade). Estacionamento fácil e acesso rápido.</p>
+                        <div class="flex items-center gap-2 text-brand-blue font-bold cursor-pointer hover:underline text-sm">
+                            <i data-lucide="map-pin" size="18"></i> Ver no Mapa
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 bg-brand-surface border-y border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="reveal lg:w-1/2">
+                    <span class="text-brand-blue text-xs font-bold uppercase tracking-[0.4em] mb-4 block">Sobre o 4Health</span>
+                    <h2 class="text-5xl md:text-7xl mb-8 leading-tight font-display">Ciência, Saúde e <span class="italic">Exclusividade.</span></h2>
+                    <div class="space-y-6 text-white/60 text-lg leading-relaxed">
+                        <p>
+                            O 4Health nasceu da necessidade de oferecer um serviço de excelência em Braga. Não somos um ginásio comum, somos um estúdio de resultados.
+                        </p>
+                        <p>
+                            Acreditamos que o exercício físico é medicina. Por isso, cada aluno é tratado como um projeto individual, onde a fisiologia encontra a motivação para atingir objetivos sustentáveis.
+                        </p>
+                        <ul class="grid grid-cols-2 gap-4 text-white font-medium pt-4">
+                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-brand-blue rounded-full"></div> Perda de Peso</li>
+                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-brand-blue rounded-full"></div> Tonificação</li>
+                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-brand-blue rounded-full"></div> Pré e Pós-parto</li>
+                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-brand-blue rounded-full"></div> Performance</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="reveal lg:w-1/2 relative">
+                    <div class="relative rounded-[40px] overflow-hidden shadow-2xl">
+                        <img 
+                            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=2070" 
+                            alt="Profissional de Treino"
+                            class="w-full grayscale h-[600px] object-cover scale-110"
+                        />
+                        <div class="absolute inset-0 bg-brand-blue/10 mix-blend-overlay"></div>
+                    </div>
+                    <!-- Stats Floating card -->
+                    <div class="reveal absolute -bottom-10 -left-10 glass p-8 rounded-3xl max-w-[280px]">
+                        <div class="text-4xl font-display font-bold text-brand-blue mb-1">1:1</div>
+                        <div class="text-xs uppercase tracking-widest font-bold opacity-60">Acompanhamento Individualizado</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid List -->
+    <section class="py-32 px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="reveal p-8 rounded-3xl border border-white/5 hover:border-brand-blue/20 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="dumbbell" class="text-brand-blue"></i>
+                    </div>
+                    <h3 class="text-2xl mb-3 font-display text-white">Treino Personalizado Premium</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Treinos 100% adaptados (emagrecimento, hipertrofia ou reabilitação).</p>
+                </div>
+                <div class="reveal p-8 rounded-3xl border border-white/5 hover:border-brand-blue/20 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="trending-up" class="text-brand-blue"></i>
+                    </div>
+                    <h3 class="text-2xl mb-3 font-display">Avaliação Bioimpedância</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Análise corporal completa para monitorizar cada centímetro da sua evolução.</p>
+                </div>
+                <div class="reveal p-8 rounded-3xl border border-white/5 hover:border-brand-blue/20 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="leaf" class="text-brand-blue"></i>
+                    </div>
+                    <h3 class="text-2xl mb-3 font-display">Nutrição Integrada</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Planos alimentares que potencializam os seus resultados no treino personalizado.</p>
+                </div>
+                <div class="reveal p-8 rounded-3xl border border-white/5 hover:border-brand-blue/20 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-check" class="text-brand-blue"></i>
+                    </div>
+                    <h3 class="text-2xl mb-3 font-display">Ambiente Exclusivo</h3>
+                    <p class="text-white/40 text-sm leading-relaxed">Foco total no acompanhamento 1 para 1, sem filas ou distrações.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-32 bg-white/5">
+        <div class="container mx-auto px-6">
+            <div class="reveal flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                <div class="max-w-2xl">
+                    <h2 class="text-5xl md:text-7xl mb-6 font-display">A Voz do <br /><span class="italic font-display">Sucesso.</span></h2>
+                    <p class="text-white/40">O que os nossos alunos dizem sobre a experiência exclusiva no 4Health.</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-4xl font-display font-bold">5.0</div>
+                    <div class="flex text-brand-blue gap-1 justify-end">
+                        <i data-lucide="star" fill="currentColor" size="14"></i>
+                        <i data-lucide="star" fill="currentColor" size="14"></i>
+                        <i data-lucide="star" fill="currentColor" size="14"></i>
+                        <i data-lucide="star" fill="currentColor" size="14"></i>
+                        <i data-lucide="star" fill="currentColor" size="14"></i>
+                    </div>
+                    <div class="text-[10px] uppercase tracking-widest mt-2 opacity-40">Google Reviews</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="reveal glass p-10 rounded-[40px] relative">
+                    <i data-lucide="quote" class="absolute top-10 right-10 text-brand-blue opacity-20" size="40"></i>
+                    <p class="text-lg italic text-white/80 mb-10 leading-relaxed font-display">"Excelente acompanhamento! O ambiente é super tranquilo e privado, nada a ver com os ginásios cheios. Em poucos meses já noto uma diferença enorme na minha postura e energia."</p>
+                    <div>
+                        <div class="font-bold text-lg">João P.</div>
+                        <div class="text-sm text-brand-blue uppercase tracking-widest font-bold">Empresário</div>
+                    </div>
+                </div>
+                <div class="reveal glass p-10 rounded-[40px] relative">
+                    <i data-lucide="quote" class="absolute top-10 right-10 text-brand-blue opacity-20" size="40"></i>
+                    <p class="text-lg italic text-white/80 mb-10 leading-relaxed font-display">"Profissionais de topo e muito focados no detalhe. Sinto que cada treino personalizado é desenhado especificamente para as minhas necessidades. Recomendo a 100% para quem quer treinar a sério em Braga."</p>
+                    <div>
+                        <div class="font-bold text-lg">Ana M.</div>
+                        <div class="text-sm text-brand-blue uppercase tracking-widest font-bold">Médica</div>
+                    </div>
+                </div>
+                <div class="reveal glass p-10 rounded-[40px] relative">
+                    <i data-lucide="quote" class="absolute top-10 right-10 text-brand-blue opacity-20" size="40"></i>
+                    <p class="text-lg italic text-white/80 mb-10 leading-relaxed font-display">"O melhor sítio em Braga para quem procura resultados e exclusividade. O acompanhamento nutricional e físico é impecável. Cinco estrelas!"</p>
+                    <div>
+                        <div class="font-bold text-lg">Ricardo S.</div>
+                        <div class="text-sm text-brand-blue uppercase tracking-widest font-bold">Arquiteto</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-32 px-6">
+        <div class="container mx-auto">
+            <div class="reveal relative rounded-[60px] overflow-hidden p-12 md:p-24 text-center glass border-brand-blue/10">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1574680096145-d05b474e2158?auto=format&fit=crop&q=80&w=2069')] bg-cover bg-center opacity-10"></div>
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    <h2 class="text-4xl md:text-7xl mb-8 font-display">Pronto para a sua melhor versão?</h2>
+                    <p class="text-xl text-white/50 mb-12">Marque agora a sua consulta inicial e comece o seu plano personalizado hoje.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="https://wa.me/351911044440" class="px-12 py-6 bg-brand-blue text-black font-bold rounded-2xl text-lg hover:scale-105 transition-transform flex items-center justify-center gap-3">
+                            Contacte-nos via WhatsApp <i data-lucide="message-circle"></i>
+                        </a>
+                        <a href="tel:+351911044440" class="px-12 py-6 glass rounded-2xl text-lg flex items-center justify-center gap-3 hover:bg-white/10 transition-all font-bold">
+                            <i data-lucide="phone" size="20"></i> +351 911 044 440
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 px-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="h-20 md:h-24 overflow-hidden">
+                    <img 
+                        src="https://lh3.googleusercontent.com/d/1dGN5AyDWhhHis0X9oi7xiwWNvU-M5B-z" 
+                        alt="4Health Logo" 
+                        class="h-full w-auto object-contain"
+                        referrerpolicy="no-referrer"
+                    />
+                </div>
+                <div class="flex flex-wrap justify-center gap-8 text-xs uppercase tracking-[0.2em] font-medium text-white/40">
+                    <a href="#" class="hover:text-white transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-white transition-colors">Facebook</a>
+                    <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacidade</a>
+                </div>
+                <div class="text-[10px] uppercase tracking-widest text-white/30 text-center md:text-right">
+                    © 2026 4Health Treino Personalizado Studio. <br class="md:hidden"> Braga, Portugal.
+                </div>
+            </div>
+            <div class="mt-12 text-center text-white/10 text-[8px] uppercase tracking-[0.5em]">
+                EXCLUSIVITY • HEALTH • PERFORMANCE • SCIENCE
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts Implementation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide Icons
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+
+            // GSAP Animations
+            if (window.gsap) {
+                gsap.registerPlugin(ScrollTrigger);
+
+                // Hero Entrance
+                const heroTl = gsap.timeline();
+                heroTl.from(".hero-line", { scaleX: 0, duration: 1, ease: "power2.out", delay: 0.2 })
+                      .from("#hero-content h1", { y: 50, opacity: 0, duration: 0.8 }, "-=0.5")
+                      .from("#hero-content p", { y: 30, opacity: 0, duration: 0.8 }, "-=0.6")
+                      .from("#hero-content a", { y: 20, opacity: 0, stagger: 0.2, duration: 0.8 }, "-=0.6");
+
+                // Scroll Reveal Animations
+                document.querySelectorAll('.reveal').forEach(el => {
+                    gsap.from(el, {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 85%",
+                            toggleActions: "play none none none"
+                        },
+                        y: 40,
+                        opacity: 0,
+                        duration: 1,
+                        ease: "power2.out"
+                    });
+                });
+            }
+
+            // Navigation Background Change on Scroll
+            const nav = document.getElementById('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.style.backgroundColor = 'rgba(5, 5, 5, 0.8)';
+                } else {
+                    nav.style.backgroundColor = 'rgba(5, 5, 5, 0)';
+                }
+            });
+
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            let isMenuOpen = false;
+
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    isMenuOpen = !isMenuOpen;
+                    if (isMenuOpen) {
+                        mobileMenu.classList.remove('hidden');
+                        setTimeout(() => {
+                            mobileMenu.classList.add('opacity-100', 'translate-y-0');
+                            mobileMenu.classList.remove('opacity-0', 'translate-y-[-20px]');
+                        }, 10);
+                    } else {
+                        mobileMenu.classList.add('opacity-0', 'translate-y-[-20px]');
+                        mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+                        setTimeout(() => {
+                            mobileMenu.classList.add('hidden');
+                        }, 300);
+                    }
+                });
+            }
+
+            // Close menu on link click
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    isMenuOpen = false;
+                    mobileMenu.classList.add('opacity-0', 'translate-y-[-20px]');
+                    mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+                    setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
