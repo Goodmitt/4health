@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4Health - Personal Training Studio</title>
-    <!-- Fonts -->
+    <title>4Health - Personal Training Studio | Braga</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Scripts -->
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -106,14 +104,12 @@
     </style>
 </head>
 <body class="selection:bg-brand-blue/30 selection:text-white">
-    <!-- Navigation -->
     <nav id="nav" class="fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between px-6 md:px-12 backdrop-blur-sm border-b border-white/5 transition-colors duration-300">
         <div class="flex items-center gap-2">
             <img 
-                src="https://lh3.googleusercontent.com/d/1dGN5AyDWhhHis0X9oi7xiwWNvU-M5B-z" 
-                alt="4Health Logo" 
-                class="h-20 md:h-28 w-auto object-contain"
-                referrerpolicy="no-referrer"
+                src="4health-logo.png" 
+                alt="4Health Studio Logo" 
+                class="h-12 md:h-16 w-auto object-contain"
             />
         </div>
 
@@ -123,10 +119,10 @@
             <a href="#about" class="hover:text-brand-blue transition-colors">O Estúdio</a>
             <a href="#testimonials" class="hover:text-brand-blue transition-colors">Testemunhos</a>
             <a 
-                href="tel:+351911044440" 
+                href="https://wa.me/351911044440?text=Olá!+Gostaria+de+agendar+a+minha+avaliação+gratuita." 
                 class="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-brand-blue hover:text-white transition-all duration-300 transform hover:scale-105"
             >
-                Reservar Agora
+                Agendar Agora
             </a>
         </div>
 
@@ -135,23 +131,21 @@
         </button>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="fixed inset-0 z-40 bg-brand-dark flex flex-col items-center justify-center gap-8 md:hidden hidden opacity-0 translate-y-[-20px] transition-all duration-300">
         <a href="#home" class="text-2xl font-display nav-link">Início</a>
         <a href="#services" class="text-2xl font-display nav-link">Serviços</a>
         <a href="#about" class="text-2xl font-display nav-link">O Estúdio</a>
         <a href="#testimonials" class="text-2xl font-display nav-link">Testemunhos</a>
-        <a href="tel:+351911044440" class="px-8 py-4 bg-brand-blue text-black font-bold rounded-full">
-            Reservar Agora
+        <a href="https://wa.me/351911044440" class="px-8 py-4 bg-brand-blue text-black font-bold rounded-full">
+            Marcar Avaliação
         </a>
     </div>
 
-    <!-- Hero Section -->
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0">
             <img 
                 src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=2070"
-                alt="Gym background" 
+                alt="Ambiente de Treino Premium" 
                 class="w-full h-full object-cover opacity-40 scale-105"
             />
             <div class="absolute inset-0 bg-gradient-to-b from-brand-dark via-transparent to-brand-dark"></div>
@@ -166,14 +160,14 @@
                 </h1>
                 <p class="text-xl md:text-2xl text-white/60 mb-10 max-w-2xl font-light leading-relaxed">
                     O estúdio de Treino Personalizado mais exclusivo de Braga. 
-                    Performance, saúde e privacidade absoluta no coração da cidade.
+                    Performance, saúde e privacidade total no centro da cidade.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a 
                         href="https://wa.me/351911044440"
                         class="px-8 py-5 bg-brand-blue text-black font-bold rounded-2xl flex items-center justify-center gap-2 group transition-all hover:scale-105"
                     >
-                        Começar a Jornada
+                        Iniciar a Jornada
                         <i data-lucide="chevron-right" class="group-hover:translate-x-1 transition-transform"></i>
                     </a>
                     <a 
@@ -186,83 +180,71 @@
             </div>
         </div>
 
-        <!-- Scroll Indicator -->
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 animate-bounce">
             <span class="text-[10px] uppercase tracking-[0.3em] font-medium">Deslizar</span>
             <div class="w-[1px] h-12 bg-white/40"></div>
         </div>
     </section>
 
-    <!-- Marquee Stripe -->
     <div class="py-12 bg-white/5 border-y border-white/5 overflow-hidden flex items-center">
         <div class="marquee-container">
             <div class="marquee-content">
                 <span class="flex items-center gap-12 text-2xl md:text-4xl font-display italic text-white/20 uppercase tracking-tighter">
                     4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
-                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
-                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
-                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
-                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
-                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    Foco no Resultado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    Exclusividade em Braga <i data-lucide="sparkles" class="text-brand-blue"></i>
                 </span>
                 <span class="flex items-center gap-12 text-2xl md:text-4xl font-display italic text-white/20 uppercase tracking-tighter">
                     4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
-                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
-                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
-                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
-                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
-                    4Health Treino Personalizado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    Foco no Resultado <i data-lucide="sparkles" class="text-brand-blue"></i>
+                    Exclusividade em Braga <i data-lucide="sparkles" class="text-brand-blue"></i>
                 </span>
             </div>
         </div>
     </div>
 
-    <!-- Diferenciais Bento Grid -->
     <section id="services" class="py-32 px-6">
         <div class="container mx-auto">
             <div class="reveal mb-20 text-center">
-                <h2 class="text-4xl md:text-6xl mb-6 font-display">Redefinir o <span class="text-brand-blue font-light">Treino Personalizado</span></h2>
+                <h2 class="text-4xl md:text-6xl mb-6 font-display">Redefinir o <span class="text-brand-blue font-light">Vosso Treino</span></h2>
                 <p class="text-white/40 max-w-xl mx-auto">
-                    Esqueça os ginásios convencionais. Entregamos resultados reais através de uma abordagem científica e totalmente personalizada.
+                    Esqueça os ginásios convencionais. Entregamos resultados reais através de uma abordagem científica e totalmente personalizada às suas necessidades.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[800px]">
-                <!-- Main Bento Item -->
-                <div class="reveal md:col-span-2 bento-card glass p-10 flex flex-col justify-end bg-[url('https://i.postimg.cc/8kq90xjK/642427959-18398281282199741-8164516827589187910-n.jpg')] bg-cover bg-center">
+                <div class="reveal md:col-span-2 bento-card glass p-10 flex flex-col justify-end bg-[url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=2070')] bg-cover bg-center">
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent"></div>
                     <div class="relative z-10">
                         <i data-lucide="users" class="w-12 h-12 text-brand-blue mb-6"></i>
-                        <h3 class="text-3xl md:text-5xl mb-4 font-display">Privacidade Absoluta</h3>
+                        <h3 class="text-3xl md:text-5xl mb-4 font-display">Privacidade Total</h3>
                         <p class="text-white/70 max-w-md text-lg">
-                            Treine num ambiente exclusivo, focado 100% em si. Sem multidões, sem espera por máquinas.
+                            Treine num ambiente exclusivo, focado 100% em si. Sem multidões, sem esperas por máquinas.
                         </p>
                     </div>
                 </div>
 
-                <!-- Side Bento Items -->
                 <div class="grid grid-rows-2 gap-6">
                     <div class="reveal bento-card glass p-8 group">
                         <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mb-6 border border-white/10 group-hover:bg-brand-blue group-hover:text-black transition-colors">
                             <i data-lucide="trending-up"></i>
                         </div>
-                        <h3 class="text-2xl mb-2 font-display">Avaliação de Bioimpedância</h3>
+                        <h3 class="text-2xl mb-2 font-display">Análise de Bioimpedância</h3>
                         <p class="text-white/50 text-sm">Monitorização precisa da sua massa gorda, muscular e retenção hídrica.</p>
                     </div>
                     <div class="reveal bento-card glass p-8 flex flex-col justify-center bg-brand-blue/10 border-brand-blue/20">
-                        <h3 class="text-2xl mb-4 italic font-display text-brand-blue font-display">"O melhor sítio em Braga para quem procura resultados."</h3>
+                        <h3 class="text-2xl mb-4 italic font-display text-brand-blue font-display">"O melhor sítio em Braga para quem procura resultados reais."</h3>
                         <span class="text-sm font-bold uppercase tracking-widest">– Ricardo S.</span>
                     </div>
                 </div>
 
-                <!-- Bottom Row -->
                 <div class="reveal bento-card glass p-8 md:flex-row flex flex-col gap-6 items-center sm:items-start">
                     <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center shrink-0 border border-white/10">
                         <i data-lucide="leaf" class="text-brand-blue"></i>
                     </div>
                     <div>
                         <h3 class="text-xl mb-2 font-display">Nutrição Integrada</h3>
-                        <p class="text-white/50 text-sm">Planos alimentares desenhados por especialistas para potenciar o seu treino personalizado.</p>
+                        <p class="text-white/50 text-sm">Planos alimentares desenhados para potenciarem o seu treino personalizado.</p>
                     </div>
                 </div>
 
@@ -271,22 +253,21 @@
                         <img 
                             src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&q=80&w=2069" 
                             class="w-full h-full object-cover"
-                            alt="Equipamento de treino"
+                            alt="Equipamento de elite"
                         />
                     </div>
                     <div class="flex-1 text-left">
                         <h3 class="text-3xl mb-4 font-display">Localização Premium</h3>
-                        <p class="text-white/50 mb-6 text-sm">No coração de Braga, nas Galerias do Bingo (Av. da Liberdade). Estacionamento fácil e acesso rápido.</p>
-                        <div class="flex items-center gap-2 text-brand-blue font-bold cursor-pointer hover:underline text-sm">
-                            <i data-lucide="map-pin" size="18"></i> Ver no Mapa
-                        </div>
+                        <p class="text-white/50 mb-6 text-sm">No centro de Braga, nas Galerias do Bingo (Av. da Liberdade). Estacionamento fácil e acesso rápido.</p>
+                        <a href="https://maps.google.com" target="_blank" class="flex items-center gap-2 text-brand-blue font-bold cursor-pointer hover:underline text-sm">
+                            <i data-lucide="map-pin" size="18"></i> Ver no Google Maps
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="py-32 bg-brand-surface border-y border-white/5">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row items-center gap-20">
@@ -295,10 +276,10 @@
                     <h2 class="text-5xl md:text-7xl mb-8 leading-tight font-display">Ciência, Saúde e <span class="italic">Exclusividade.</span></h2>
                     <div class="space-y-6 text-white/60 text-lg leading-relaxed">
                         <p>
-                            O 4Health nasceu da necessidade de oferecer um serviço de excelência em Braga. Não somos um ginásio comum, somos um estúdio de resultados.
+                            O 4Health nasceu da necessidade de oferecer um serviço de excelência em Braga. Não somos um ginásio comum, somos um estúdio focado em resultados.
                         </p>
                         <p>
-                            Acreditamos que o exercício físico é medicina. Por isso, cada aluno é tratado como um projeto individual, onde a fisiologia encontra a motivação para atingir objetivos sustentáveis.
+                            Acreditamos que o exercício físico é medicina. Por isso, cada aluno é tratado como um projeto individual, onde a fisiologia encontra a motivação necessária para atingir objetivos sustentáveis.
                         </p>
                         <ul class="grid grid-cols-2 gap-4 text-white font-medium pt-4">
                             <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-brand-blue rounded-full"></div> Perda de Peso</li>
@@ -312,58 +293,20 @@
                     <div class="relative rounded-[40px] overflow-hidden shadow-2xl">
                         <img 
                             src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=2070" 
-                            alt="Profissional de Treino"
+                            alt="Treino Personalizado em Braga"
                             class="w-full grayscale h-[600px] object-cover scale-110"
                         />
                         <div class="absolute inset-0 bg-brand-blue/10 mix-blend-overlay"></div>
                     </div>
-                    <!-- Stats Floating card -->
                     <div class="reveal absolute -bottom-10 -left-10 glass p-8 rounded-3xl max-w-[280px]">
                         <div class="text-4xl font-display font-bold text-brand-blue mb-1">1:1</div>
-                        <div class="text-xs uppercase tracking-widest font-bold opacity-60">Acompanhamento Individualizado</div>
+                        <div class="text-xs uppercase tracking-widest font-bold opacity-60">Acompanhamento Totalmente Individualizado</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Grid List -->
-    <section class="py-32 px-6">
-        <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="reveal p-8 rounded-3xl border border-white/5 hover:border-brand-blue/20 transition-all group">
-                    <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="dumbbell" class="text-brand-blue"></i>
-                    </div>
-                    <h3 class="text-2xl mb-3 font-display text-white">Treino Personalizado Premium</h3>
-                    <p class="text-white/40 text-sm leading-relaxed">Treinos 100% adaptados (emagrecimento, hipertrofia ou reabilitação).</p>
-                </div>
-                <div class="reveal p-8 rounded-3xl border border-white/5 hover:border-brand-blue/20 transition-all group">
-                    <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="trending-up" class="text-brand-blue"></i>
-                    </div>
-                    <h3 class="text-2xl mb-3 font-display">Avaliação Bioimpedância</h3>
-                    <p class="text-white/40 text-sm leading-relaxed">Análise corporal completa para monitorizar cada centímetro da sua evolução.</p>
-                </div>
-                <div class="reveal p-8 rounded-3xl border border-white/5 hover:border-brand-blue/20 transition-all group">
-                    <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="leaf" class="text-brand-blue"></i>
-                    </div>
-                    <h3 class="text-2xl mb-3 font-display">Nutrição Integrada</h3>
-                    <p class="text-white/40 text-sm leading-relaxed">Planos alimentares que potencializam os seus resultados no treino personalizado.</p>
-                </div>
-                <div class="reveal p-8 rounded-3xl border border-white/5 hover:border-brand-blue/20 transition-all group">
-                    <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="shield-check" class="text-brand-blue"></i>
-                    </div>
-                    <h3 class="text-2xl mb-3 font-display">Ambiente Exclusivo</h3>
-                    <p class="text-white/40 text-sm leading-relaxed">Foco total no acompanhamento 1 para 1, sem filas ou distrações.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
     <section id="testimonials" class="py-32 bg-white/5">
         <div class="container mx-auto px-6">
             <div class="reveal flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
@@ -387,7 +330,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="reveal glass p-10 rounded-[40px] relative">
                     <i data-lucide="quote" class="absolute top-10 right-10 text-brand-blue opacity-20" size="40"></i>
-                    <p class="text-lg italic text-white/80 mb-10 leading-relaxed font-display">"Excelente acompanhamento! O ambiente é super tranquilo e privado, nada a ver com os ginásios cheios. Em poucos meses já noto uma diferença enorme na minha postura e energia."</p>
+                    <p class="text-lg italic text-white/80 mb-10 leading-relaxed font-display">"Excelente acompanhamento! O ambiente é muito tranquilo e privado, nada a ver com os ginásios cheios de gente. Em poucos meses já noto uma diferença enorme na minha energia."</p>
                     <div>
                         <div class="font-bold text-lg">João P.</div>
                         <div class="text-sm text-brand-blue uppercase tracking-widest font-bold">Empresário</div>
@@ -395,7 +338,7 @@
                 </div>
                 <div class="reveal glass p-10 rounded-[40px] relative">
                     <i data-lucide="quote" class="absolute top-10 right-10 text-brand-blue opacity-20" size="40"></i>
-                    <p class="text-lg italic text-white/80 mb-10 leading-relaxed font-display">"Profissionais de topo e muito focados no detalhe. Sinto que cada treino personalizado é desenhado especificamente para as minhas necessidades. Recomendo a 100% para quem quer treinar a sério em Braga."</p>
+                    <p class="text-lg italic text-white/80 mb-10 leading-relaxed font-display">"Profissionais de topo e muito focados no detalhe. Sinto que cada treino é desenhado especificamente para as minhas necessidades reais. Recomendo a 100%."</p>
                     <div>
                         <div class="font-bold text-lg">Ana M.</div>
                         <div class="text-sm text-brand-blue uppercase tracking-widest font-bold">Médica</div>
@@ -403,7 +346,7 @@
                 </div>
                 <div class="reveal glass p-10 rounded-[40px] relative">
                     <i data-lucide="quote" class="absolute top-10 right-10 text-brand-blue opacity-20" size="40"></i>
-                    <p class="text-lg italic text-white/80 mb-10 leading-relaxed font-display">"O melhor sítio em Braga para quem procura resultados e exclusividade. O acompanhamento nutricional e físico é impecável. Cinco estrelas!"</p>
+                    <p class="text-lg italic text-white/80 mb-10 leading-relaxed font-display">"O melhor sítio em Braga para quem procura resultados e exclusividade. O acompanhamento físico é impecável. Cinco estrelas!"</p>
                     <div>
                         <div class="font-bold text-lg">Ricardo S.</div>
                         <div class="text-sm text-brand-blue uppercase tracking-widest font-bold">Arquiteto</div>
@@ -413,16 +356,15 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="py-32 px-6">
         <div class="container mx-auto">
             <div class="reveal relative rounded-[60px] overflow-hidden p-12 md:p-24 text-center glass border-brand-blue/10">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1574680096145-d05b474e2158?auto=format&fit=crop&q=80&w=2069')] bg-cover bg-center opacity-10"></div>
                 <div class="relative z-10 max-w-3xl mx-auto">
                     <h2 class="text-4xl md:text-7xl mb-8 font-display">Pronto para a sua melhor versão?</h2>
-                    <p class="text-xl text-white/50 mb-12">Marque agora a sua consulta inicial e comece o seu plano personalizado hoje.</p>
+                    <p class="text-xl text-white/50 mb-12">Marque agora a sua consulta inicial e comece o seu plano personalizado hoje mesmo.</p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="https://wa.me/351911044440" class="px-12 py-6 bg-brand-blue text-black font-bold rounded-2xl text-lg hover:scale-105 transition-transform flex items-center justify-center gap-3">
+                        <a href="https://wa.me/351911044440?text=Olá!+Gostaria+de+agendar+a+minha+avaliação+gratuita." class="px-12 py-6 bg-brand-blue text-black font-bold rounded-2xl text-lg hover:scale-105 transition-transform flex items-center justify-center gap-3">
                             Contacte-nos via WhatsApp <i data-lucide="message-circle"></i>
                         </a>
                         <a href="tel:+351911044440" class="px-12 py-6 glass rounded-2xl text-lg flex items-center justify-center gap-3 hover:bg-white/10 transition-all font-bold">
@@ -434,16 +376,14 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-12 border-t border-white/5 px-6">
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="h-20 md:h-24 overflow-hidden">
+                <div class="h-12 md:h-16 overflow-hidden">
                     <img 
-                        src="https://lh3.googleusercontent.com/d/1dGN5AyDWhhHis0X9oi7xiwWNvU-M5B-z" 
+                        src="4health-logo.png" 
                         alt="4Health Logo" 
                         class="h-full w-auto object-contain"
-                        referrerpolicy="no-referrer"
                     />
                 </div>
                 <div class="flex flex-wrap justify-center gap-8 text-xs uppercase tracking-[0.2em] font-medium text-white/40">
@@ -456,13 +396,9 @@
                     © 2026 4Health Treino Personalizado Studio. <br class="md:hidden"> Braga, Portugal.
                 </div>
             </div>
-            <div class="mt-12 text-center text-white/10 text-[8px] uppercase tracking-[0.5em]">
-                EXCLUSIVITY • HEALTH • PERFORMANCE • SCIENCE
-            </div>
         </div>
     </footer>
 
-    <!-- Scripts Implementation -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize Lucide Icons
@@ -546,4 +482,3 @@
     </script>
 </body>
 </html>
-
